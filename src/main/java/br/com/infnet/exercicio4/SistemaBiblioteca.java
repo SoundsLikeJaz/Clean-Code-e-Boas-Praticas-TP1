@@ -1,0 +1,37 @@
+package br.com.infnet.exercicio4;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SistemaBiblioteca {
+    private List livros;
+    private List disponibilidade;
+    public SistemaBiblioteca() {
+        livros = new ArrayList< >();
+        disponibilidade = new ArrayList < > ();
+    }
+    public void adicionarLivro(String titulo) {
+        livros.add(titulo);
+        disponibilidade.add(true);
+    }
+    public void emprestarLivro(String titulo) {
+        for (int i = 0; i < livros.size(); i++) {
+            if (livros.get(i).equals(titulo) && disponibilidade.get(i)) {
+                disponibilidade.set(i, false);
+                System.out.println("Livro emprestado: " + titulo);
+                return;
+            }
+        }
+        System.out.println("Livro não disponível.");
+    }
+    public void devolverLivro(String titulo) {
+        for (int i = 0; i < livros.size(); i++) {
+            if (livros.get(i).equals(titulo)) {
+                disponibilidade.set(i, true);
+                System.out.println("Livro devolvido: " + titulo);
+                return;
+            }
+        }
+        System.out.println("Livro não encontrado.");
+    }
+}
